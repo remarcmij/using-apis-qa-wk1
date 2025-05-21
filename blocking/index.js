@@ -1,5 +1,8 @@
 import { beep } from '../lib/beep.js';
 
+let setTimeoutFn;
+let isRunning = false;
+
 function setTimeoutBlocking(callbackFn, time) {
   const endTime = Date.now() + time;
   while (Date.now() < endTime) {
@@ -8,16 +11,12 @@ function setTimeoutBlocking(callbackFn, time) {
   callbackFn();
 }
 
-let setTimeoutFn;
-
-let isRunning = false;
-
 function timer(count) {
   if (!isRunning) {
     return;
   }
 
-  console.log(count);
+  console.log('count:', count);
   document.querySelector('#counter').textContent = count;
 
   if (count === 0) {
@@ -32,7 +31,6 @@ function timer(count) {
 }
 
 function startTimer() {
-  console.log('startTimer called');
   if (isRunning) {
     return;
   }
@@ -43,11 +41,9 @@ function startTimer() {
 
   isRunning = true;
   timer(10);
-  console.log('<<< startTimer has exited >>>');
 }
 
 function stopTimer() {
-  console.log('stopTimer called');
   isRunning = false;
 }
 
