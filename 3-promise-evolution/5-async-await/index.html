@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Async/Await Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/q.js/1.5.1/q.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        width: 100vw;
+      }
+      body > * {
+        max-width: 640px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello, Async/Await!</h1>
+    <p>
+      A new way to handle promises using `async/await` was introduced in ES2017
+      (ES8). This syntax allows you to write asynchronous code that looks
+      synchronous, making it easier to read and maintain. The `async` keyword is
+      used to declare an asynchronous function, and the `await` keyword is used
+      to pause the execution of the function until the promise is resolved or
+      rejected. In ES2022 the await operator was added to the top level of
+      modules, allowing you to use ` outside of async functions. This means you
+      can write asynchronous code at the top level of your module without
+      wrapping it in an async function.
+    </p>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>

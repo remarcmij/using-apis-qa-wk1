@@ -1,5 +1,5 @@
 const promise = new Promise((resolve, reject) => {
-  resolve(42);
+  reject(new Error('Oops... Something went wrong!'));
 });
 
 const foo = promise
@@ -15,3 +15,15 @@ const foo = promise
 foo.then(() => {
   console.log(5, foo);
 });
+
+/* 
+What will be the output of the above code?
+
+1 ...
+2 ...
+
+3 ...
+4 ...
+
+5
+*/
