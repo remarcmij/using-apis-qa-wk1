@@ -83,12 +83,12 @@ export class CustomPromise {
     }
 
     if (this.#state === 'pending') {
-      console.log(chalk.dim(`[promise#${this.#id} pending]`));
+      console.log(chalk.dim(`[promise#${this.#id} created (pending)]`));
     }
   }
 
   #fulfilledHandler(resolve, reject, onFulfilled) {
-    console.log(chalk.grey(`[enqueue microtask#${this.#id}]`));
+    console.log(chalk.grey(`[microtask#${this.#id} enqueued]`));
     queueMicrotask(() => {
       console.log(chalk.yellow(`\n[microtask#${this.#id} start]`));
 
@@ -112,7 +112,7 @@ export class CustomPromise {
   }
 
   #rejectedHandler(resolve, reject, onRejected) {
-    console.log(chalk.grey(`[enqueue microtask#${this.#id}]`));
+    console.log(chalk.grey(`[microtask#${this.#id}] enqueued`));
     queueMicrotask(() => {
       console.log(chalk.yellow(`\n[microtask#${this.#id} start]`));
       try {

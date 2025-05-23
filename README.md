@@ -11,15 +11,15 @@
 
 (Start recording!)
 
-1. [Blocking Demo](#blocking-demo)
+1. [Blocking Demo](#1-blocking-demo)
 
-2. [Promise Quiz](#promise-quiz)
+2. [Promise Quiz](#2-promise-quiz)
+  
+3. [Promise Evolution](#3-promise-evolution)
 
-3. [Promise Evolution](#promise-evolution)
+4. [Event Loop and Call Stack](#4-event-loop-and-call-stack)
 
-4. [Event Loop and Call Stack](#event-loop-and-call-stack)
-
-5. [Promises, Event Loop and Microtasks](#promises-event-loop-and-microtasks)
+5. [Promises, Event Loop and Microtasks](#5-promises-event-loop-and-microtasks)
 
 6. Prep exercise: Cat Walk
 
@@ -30,7 +30,7 @@ More event loop videos:
 - <https://youtu.be/eiC58R16hb8?si=NESGMiIrCvNFrEjT>
 - <https://youtu.be/cCOL7MC4Pl0>
 
-## Blocking Demo
+## 1. Blocking Demo
 
 Folder: [1-blocking-demo](./1-blocking-demo/)
 
@@ -57,7 +57,7 @@ However, the console output still show the countdown and you will still hear a b
 **Takeaway:**  
 Blocking code makes the web page unresponsive and leads to a poor user experience. Always write non-blocking, asynchronous code to keep your web apps smooth and interactive.
 
-## Promise Quiz
+## 2. Promise Quiz
 
 Folder: [2-promise-quiz](2-promise-quiz/)
 
@@ -81,7 +81,7 @@ A promise may be in one of 3 possible states:
 
 Starting with `1-promise.js`, analyze the given code and predict the expected output.
 
-## Promise Evolution
+## 3. Promise Evolution
 
 Folder: [3-promise-evolution](3-promise-evolution/)
 
@@ -99,7 +99,7 @@ Promises were introduced as a native feature in JavaScript with ES2015 (ES6). Ho
 
 Note: In modern applications we prefer native promises over the older `jQuery` and external promise libraries. The examples for the older versions are provided here for demo purposes only.
 
-## Event Loop and Call Stack
+## 4. Event Loop and Call Stack
 
 Folder : [4-event-loop-call-stack](4-event-loop-call-stack/)
 
@@ -145,10 +145,31 @@ The event loop processes the microtask queue before the task queue, which means 
 
 11. Click "Resume". The Call Stack will be empty. All tasks have been executed. No more tasks are queued. The demo is finished.
 
-## Promises, Event Loop and Microtasks
+## 5. Promises, Event Loop and Microtasks
 
 Folder: [5-promises-event-loop-microtasks](5-promises-event-loop-microtasks/)
 
-This folder contains examples and explanations of how promises, the event loop, and microtasks work together in JavaScript. It demonstrates how promises are executed in the event loop and how they interact with other asynchronous operations.
+This folder contains examples and explanations of how promises, the event loop, and microtasks work together in JavaScript.
+
+> **Note**: The goal of this section is to help you understand how promises work under the hood and how they interact with the event loop and microtasks. You do not need think in these terms when you use promises in your own code. However, understanding these concepts will help you better understand how JavaScript handles asynchronous operations and how to write more efficient and effective code.
+
+When a promise is settled it creates a microtask and enqueues it in the microtask queue. This microtask is responsible for executing the appropriate callbacks (from either `.then()` or `.catch()`) associated with the promise. The event loop processes the microtask queue before the task queue, ensuring that promise callbacks are executed before any other tasks in the task queue.
+
+Each call to `.then()` creates a new promise. (Note that [`.catch()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) is just syntactic sugar for `.then(null, onRejected)`, i.e. it is just a `.then()` in disguise). Because each `.then()` and `.catch()` creates a new promise, you can chain them together to create a sequence of asynchronous operations.
+
+To illustrate how the microtasks are used by promises, the examples in this folder use a custom replacement of `Promise` called `CustomPromise`. This replacement is a simplified version of the native `Promise` object, designed to logs its internal events to the console. (There is no need to understand its internal implementation to follow along, nor do we expect this from you.)
+
+Each promise that created with `CustomPromise` is assigned a unique ID that is used to label the output of each event, as illustrated in the table below:
+
+| Event | Example Message |
+|-------|---------|
+| A promise is created | `[promise#1 created (pending)]` |
+| A promise is fulfilled | `[promise#1 fulfilled]` |
+| A promise is rejected | `[promise#1 rejected]` |
+| A microtask is enqueued | `[microtask#1 enqueued]` |
+| A microtask starts | `[microtask#1 start]` |
+| A microtask exits | `[microtask#1 exit]` |
+
+### Examples
 
 ## Questions
