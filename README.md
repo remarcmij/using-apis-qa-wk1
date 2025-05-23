@@ -1,5 +1,3 @@
-<!-- cSpell:disable -->
-
 # Q&A Week 1
 
 ## Today's Agenda
@@ -99,6 +97,8 @@ Promises were introduced as a native feature in JavaScript with ES2015 (ES6). Ho
 
 Note: In modern applications we prefer native promises over the older `jQuery` and external promise libraries. The examples for the older versions are provided here for demo purposes only.
 
+TODO: discuss the examples.
+
 ## 4. Event Loop and Call Stack
 
 Folder : [4-event-loop-call-stack](4-event-loop-call-stack/)
@@ -171,5 +171,113 @@ Each promise that created with `CustomPromise` is assigned a unique ID that is u
 | A microtask exits | `[microtask#1 exit]` |
 
 ### Examples
+
+It is best to run the examples in the VSCode Integrated Terminal, as the console output uses colour and is easier to read there. To do this, open the Integrated Terminal in VSCode by selecting `Terminal` > `New Terminal` from the menu bar. This will open a terminal window at the bottom of the VSCode window.
+
+Then, use the following command (you only need to do this once):
+
+```bash
+npm install
+```
+
+This will install a library (if not already installed) that is used to colour the console output for the examples.
+
+Next, descend into the `5-promises-event-loop-microtasks` folder by running the following command (tip: because the terminal supports tab completion, you can type `cd 5` and then press the `Tab` key to complete the folder name):
+
+```bash
+cd 5-promises-event-loop-microtasks
+```
+
+### Example 1: `1-resolved-chain.js`
+
+Open the file `1-resolved-chain.js` in the VSCode editor. You will find a function called `main()` that creates a promise that is immediately resolved. (Because `resolve()` is called without a value here it resolves to the value `undefined`.) A chain of `.then()`  and `.catch()` method calls hangs off the promise.
+
+Note that the `.catch()` method calls in this (and the next) example are somewhere in the middle of the chain. This is not a common pattern, but it is used here to illustrate how a rejected promise is handled in the chain. In practice, you would typically add a `.catch()` method call at the end of the chain to handle any errors that may occur.
+
+To run the example, use the following command in the terminal (you can again use tab completion to help you by typing `node 1` and then pressing the `Tab` key):
+
+```bash
+node 1-resolved-chain.js
+```
+
+This will run the example and print the output to the terminal. You should see a series of messages that show the order in which the events occur.
+The output will look something like this:
+
+```text
+<<< main starting >>>
+[promise#1 resolved → undefined]
+[microtask#1 enqueued]
+[promise#2 created (pending)]
+[promise#3 created (pending)]
+[promise#4 created (pending)]
+[promise#5 created (pending)]
+[promise#6 created (pending)]
+<<< main ending >>>
+
+[microtask#1 start]
+then#1
+[promise#2 resolved → undefined]
+[microtask#2 enqueued]
+[microtask#1 exit]
+
+[microtask#2 start]
+then#2
+[promise#3 resolved → undefined]
+[microtask#3 enqueued]
+[microtask#2 exit]
+
+[microtask#3 start]
+[promise#4 resolved → undefined]
+[microtask#4 enqueued]
+[microtask#3 exit]
+
+[microtask#4 start]
+[promise#5 resolved → undefined]
+[microtask#5 enqueued]
+[microtask#4 exit]
+
+[microtask#5 start]
+then#5
+[promise#6 resolved → undefined]
+[microtask#5 exit]
+
+```
+
+Before we will go over the output in detail, let's take a look at a version of the code that makes it easier to reason about the association between the output and the code. This version is in the file `2-resolved-unchained.js` and is functionally identical to the previous example, except that each promise in the chain is assigned to a separate variable with a name `promiseX`, where `X` is the promise sequence number. Verify for yourself that the output is the same as in the previous example by running the following command and then comparing the output with the previous version:
+
+```bash
+node 2-resolved-unchained.js
+```
+
+**Discussion:**
+
+- As mentioned earlier, each `.then()` or `.catch()` method called on a promise creates a new promise. This is why you see multiple `[promise#X created (pending)]` messages in the output. Promise#1 is created by calling the Promise constructor with `new` and further promises (2-6) are created by the `.then()` and `.catch()` method calls. So the `main()` function creates 6 promises in total.
+
+- In the code promise#1 was created as an immediately resolved promise. Because a `.then()` method was called on it, the promise, upon settlement, enqueues a microtask (microtask#1) to schedule the processing of that `.then()`. Observe that promise#2 up to promise#6 remain pending during the execution of `main()`.
+
+- With `main()` completed, the call stack is now empty and the event loop will start processing the microtask queue. There it will find microtask#1 and start its execution. Because promise#1 was fulfilled (i.e. resolved) microtask#1 will run the `onFulfilled` callback of the `promise1.then()`. This callback logs the message `then#1` on the console. The return value of the callback will become the fulfillment value of promise#2. Because the `onFulfilled` callback does not return anything here (thus effectively returning `undefined`), promise#2, returned by `promise1.then()`, is resolved to `undefined`. Because `.then()` was called on promise#2 a new microtask (microtask#2) is enqueued. With that, microtask#1 is done and exits.
+
+- With the call stack empty again, the event loop now picks up microtask#2 and starts its execution. It runs the `onFulfilled` callback of promise#2, which logs the message `then#1` on the console. The return value of this callback will become the fulfillment value of promise#3. Again, because the `onFulfilled` callback does not return anything here (thus effectively returning `undefined`), promise#3 is now resolved to `undefined`. This in turn causes microtask#3 to be enqueued. With that, microtask#2 is done and exits.
+
+- Promise#3 is resolved in a similar manner when microtask#2 is executed.
+
+- Promise#4 is created for the first `.catch()` in the chain. Because the promise of the `.then()` preceding it was resolved its `onRejected` callback is _not_ called. Instead, it passes on a promise that is resolved to the value of the previous promise (i.e. `undefined`).
+
+- The same thing happens for promise#5, which is associated with the second `.catch()` in the chain.
+
+| Microtask | Event | Promise | Message |
+|-----------|-------|---------|---------|
+| 1         | start | 1       | then#1  |
+| 1         | exit  | 2       |         |
+| 2         | start | 2       | then#2  |
+| 2         | exit  | 3       |         |
+| 3         | start | 3       |         |
+| 3         | exit  | 4       |         |
+| 4         | start | 4       |         |
+| 4         | exit  | 5       |         |
+| 5         | start | 5       | then#5  |
+| 5         | exit  | 6       |         |
+| 6         | start | 6       |         |
+| 6         | exit  |         |         |
 
 ## Questions

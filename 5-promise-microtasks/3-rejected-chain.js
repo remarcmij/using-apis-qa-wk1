@@ -5,7 +5,7 @@ function main() {
   console.log('<<< main starting >>>');
 
   const promise = new Promise((resolve, reject) => {
-    setTimeout(reject, 2000);
+    reject();
   });
 
   promise

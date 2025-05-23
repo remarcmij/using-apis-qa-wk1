@@ -62,7 +62,7 @@ export class CustomPromise {
       if (this.#state === 'pending') {
         this.#state = 'fulfilled';
         this.#value = value;
-        console.log(chalk.green(`[promise#${this.#id} fulfilled]`));
+        console.log(chalk.green(`[promise#${this.#id} resolved → ${value}]`));
         this.#fulfilledHandlers.forEach((handler) => handler());
       }
     };
@@ -71,7 +71,7 @@ export class CustomPromise {
       if (this.#state === 'pending') {
         this.#state = 'rejected';
         this.#reason = reason;
-        console.log(chalk.red(`[promise#${this.#id} rejected]`));
+        console.log(chalk.red(`[promise#${this.#id} rejected → ${reason}]`));
         this.#rejectedHandlers.forEach((handler) => handler());
       }
     };
@@ -88,7 +88,7 @@ export class CustomPromise {
   }
 
   #fulfilledHandler(resolve, reject, onFulfilled) {
-    console.log(chalk.grey(`[microtask#${this.#id} enqueued]`));
+    console.log(chalk.magenta(`[microtask#${this.#id} enqueued]`));
     queueMicrotask(() => {
       console.log(chalk.yellow(`\n[microtask#${this.#id} start]`));
 
@@ -112,7 +112,7 @@ export class CustomPromise {
   }
 
   #rejectedHandler(resolve, reject, onRejected) {
-    console.log(chalk.grey(`[microtask#${this.#id}] enqueued`));
+    console.log(chalk.magenta(`[microtask#${this.#id}] enqueued`));
     queueMicrotask(() => {
       console.log(chalk.yellow(`\n[microtask#${this.#id} start]`));
       try {
