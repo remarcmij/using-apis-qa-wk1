@@ -23,28 +23,6 @@ export class CustomPromise {
     return new CustomPromise((resolve, reject) => reject(value));
   }
 
-  // Promise.all() adapted from https://medium.com/@copperwall/implementing-promise-all-575a07db509a
-  static all(promises) {
-    return new CustomPromise((resolve, reject) => {
-      const results = [];
-      let completed = 0;
-
-      promises.forEach((promise, index) => {
-        // Use a native promise here to simulate how the native Promise.all() works
-        Promise.resolve(promise)
-          .then((result) => {
-            results[index] = result;
-            completed += 1;
-
-            if (completed == promises.length) {
-              resolve(results);
-            }
-          })
-          .catch((err) => reject(err));
-      });
-    });
-  }
-
   static #count = 0;
 
   #state = 'pending';
@@ -62,7 +40,7 @@ export class CustomPromise {
       if (this.#state === 'pending') {
         this.#state = 'fulfilled';
         this.#value = value;
-        console.log(chalk.green(`[promise#${this.#id} resolved → ${value}]`));
+        console.log(chalk.green(`[promise#${this.#id} fulfilled → ${value}]`));
         this.#fulfilledHandlers.forEach((handler) => handler());
       }
     };

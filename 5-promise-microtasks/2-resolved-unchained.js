@@ -8,23 +8,23 @@ function main() {
     resolve();
   });
 
-  const promise2 = promise1.then(() => {
+  const promise2 = promise1.then(function onFulfilled() {
     console.log('then#1');
   });
 
-  const promise3 = promise2.then(() => {
+  const promise3 = promise2.then(function onFulfilled() {
     console.log('then#2');
   });
 
-  const promise4 = promise3.catch(() => {
+  const promise4 = promise3.catch(function onRejected() {
     console.log('catch#3');
   });
 
-  const promise5 = promise4.catch(() => {
+  const promise5 = promise4.catch(function onRejected() {
     console.log('catch#4');
   });
 
-  const promise6 = promise5.then(() => {
+  const promise6 = promise5.then(function onFulfilled() {
     console.log('then#5');
   });
 
