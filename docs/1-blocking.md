@@ -1,6 +1,6 @@
 # Blocking Demo
 
-Folder: [1-blocking-demo](./1-blocking-demo/)
+Folder: [1-blocking-demo](./1-blocking/)
 
 This example demonstrates the negative impact of **blocking code** on web page responsiveness. In JavaScript, "blocking" code is code that prevents the browser from doing anything else—such as updating the UI or responding to user input—until it finishes running. In contrast, **non-blocking** code allows the browser to continue handling other tasks while waiting for an operation to complete.
 

@@ -49,7 +49,7 @@ Open the file `1-resolved-chain.js` in the VSCode editor. You will find a functi
 
 Note that the `.catch()` method calls in this (and the next) example are somewhere in the middle of the chain. This is not a common pattern, but it is used here to illustrate how a rejected promise is handled in the chain. In practice, you would typically add a `.catch()` method call at the end of the chain to handle any errors that may occur.
 
-Let's first try and run this example using the native `Promise` object. To do this, comment out the line that imports the `CustomPromise` class. The code should look like this:
+Let's first try and run this example using the native `Promise` object. For this, we start off with the line that imports the `CustomPromise` class commented out, like this:
 
 ```javascript
 // import { CustomPromise as Promise } from './custom/promise.js';
@@ -71,7 +71,7 @@ then#2
 then#5
 ```
 
-Observe that we only see the output of the `.then()` callbacks and not from the `.catch()` callbacks. This is because there is no promise rejection in the chain.
+Observe that we only see the output of the `.then()` callbacks and not from the `.catch()` callbacks. This is to be expected as there is no promise rejection in the chain.
 
 Now let's use the custom Promise implementation: uncomment the line that imports the `CustomPromise.js` class and run the example again:
 
@@ -175,7 +175,7 @@ File: `3-rejected-chain.js`
 
 Open the file `3-rejected-chain.js` in the VSCode editor. This code is functionally equivalent to `1-resolved-chain.js`, except that this time the initial promise is immediately rejected.  The rejection is done by calling `reject()`. We have also replaced the arrow functions again with named functions for clarity.
 
-Let's run this example using the native `Promise` object first. To do this, comment out the line that imports the `CustomPromise` class. The code should look like this:
+Let's run this example using the native `Promise` object first. For this, make sure that the line that imports the `CustomPromise` class is commented out. The code should look like this:
 
 ```javascript
 // import { CustomPromise as Promise } from './custom/promise.js';
