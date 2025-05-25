@@ -7,7 +7,7 @@ function whatIsTheMeaningOfLife() {
   let count = 0;
   const intervalTimer = setInterval(() => {
     count += 1;
-    console.log('Thinking..' + '.'.repeat(count));
+    process.stdout.write('\rThinking' + '.'.repeat(count));
   }, 1000);
 
   return new Promise((resolve, reject) => {
@@ -17,17 +17,17 @@ function whatIsTheMeaningOfLife() {
       } else {
         reject(new Error("I don't know..."));
       }
-    }, Math.floor(Math.random() * 5000) + 1000);
+    }, Math.floor(Math.random() * 5000) + 3000);
   }).finally(() => {
-    console.log('Done thinking.');
+    console.log('\nDone thinking.');
     clearInterval(intervalTimer);
   });
 }
 
 whatIsTheMeaningOfLife()
   .then((result) => {
-    console.log('The meaning of life is:', result);
+    console.log('The answer is:', result);
   })
   .catch((err) => {
-    console.log('Sorry:', err.message);
+    console.log('Unfortunately,', err.message);
   });
