@@ -3,31 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Q Library Example</title>
+    <title>jQuery</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/q.js/1.5.1/q.min.js"></script>
-    <style>
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-        line-height: 1.5;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        width: 100vw;
-      }
-      body > * {
-        max-width: 640px;
-        width: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="../assets/style.css" />
   </head>
   <body>
     <h1>Hello, Q!</h1>
-    <p>
-      Q uses .then() and .catch() just like native Promises. The main difference
-      is the use of Q.defer() and returning deferred.promise.
-    </p>
+    <h2 class="question">
+      What is the answer to the
+      <span>Ultimate Question of Life, the Universe, and Everything</span>?
+    </h2>
+    <p id="answer">Thinking...</p>
     <script type="module" src="index.js"></script>
   </body>
 </html>

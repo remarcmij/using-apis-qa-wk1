@@ -1,0 +1,20 @@
+```css
+/* ...existing code... */
+p {
+  /* ...existing code... */
+  animation: fadeInOut 2s linear infinite;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* ...existing code... */
+```

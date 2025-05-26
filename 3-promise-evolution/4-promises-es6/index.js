@@ -1,21 +1,25 @@
-// Simulate an async operation using ES6 Promises
-function asyncOperation() {
-  return new Promise(function (resolve, reject) {
-    setTimeout(function () {
+const answerContainer = document.querySelector('#answer');
+
+function whatIsTheMeaningOfLifeES6() {
+  answerContainer.classList.add('heartbeat');
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      answerContainer.classList.remove('heartbeat');
       if (Math.random() > 0.5) {
-        resolve('Success! Data loaded.');
+        resolve(42);
       } else {
-        reject('Error: Something went wrong.');
+        reject(new Error("I don't have a clue."));
       }
-    }, 1000);
+    }, Math.floor(Math.random() * 5000) + 3000);
   });
 }
 
-// Usage
-asyncOperation()
+whatIsTheMeaningOfLifeES6()
   .then((result) => {
-    console.log('Resolved:', result);
+    answerContainer.classList.add('success');
+    answerContainer.textContent = 'The answer is: ' + result;
   })
   .catch((error) => {
-    console.log('Rejected:', error);
+    answerContainer.classList.add('fail');
+    answerContainer.textContent = 'Unfortunately, ' + error.message;
   });

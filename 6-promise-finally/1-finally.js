@@ -15,7 +15,7 @@ function whatIsTheMeaningOfLife() {
       if (Math.random() > 0.5) {
         resolve(42);
       } else {
-        reject(new Error("I don't know."));
+        reject(new Error("I don't have a clue."));
       }
     }, Math.floor(Math.random() * 5000) + 3000);
   });

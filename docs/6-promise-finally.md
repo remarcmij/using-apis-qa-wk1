@@ -8,9 +8,9 @@ Promise.finally() is a method that allows you to execute a callback function whe
 
 ## Examples
 
-The examples are about giving the answer to [The Ultimate Question of Life, the Universe, and Everything](https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#_The_Answer_to_the_Ultimate_Question_of_Life,_the_Universe,_and_Everything_is_42), in brief the Meaning of Life. As we all know, the answer is 42.
+The examples are about finding the answer to [The Ultimate Question of Life, the Universe, and Everything](https://en.wikipedia.org/wiki/Phrases_from_The_Hitchhiker%27s_Guide_to_the_Galaxy#_The_Answer_to_the_Ultimate_Question_of_Life,_the_Universe,_and_Everything_is_42), in brief the Meaning of Life. As we all know, the answer is 42.
 
-The code gives itself thinking time. While it is thinking it logs every second a message "Thinking..." to the console. After a random thinking time (between 1 and 5 seconds) it either gives us the correct answer 42 or tell us that it doesn't know the answer. (The chances ar 50/50.) After that, we expect the thinking to stop.
+The code gives itself thinking time. While it is thinking it logs every second a message "Thinking..." to the console. After a random thinking time (between 1 and 5 seconds) it either gives us the correct answer 42 or tell us that it doesn't know the answer. (The chances are 50/50.) After that, we expect the thinking to stop.
 
 ### Example 1: `1-finally.js`
 
@@ -31,7 +31,7 @@ function whatIsTheMeaningOfLife() {
       if (Math.random() > 0.5) {
         resolve(42);
       } else {
-        reject(new Error("I don't know."));
+        reject(new Error("I don't have a clue."));
       }
     }, Math.floor(Math.random() * 5000) + 3000);
   });

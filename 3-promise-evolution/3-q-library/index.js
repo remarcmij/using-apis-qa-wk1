@@ -1,22 +1,31 @@
-function asyncOperation() {
+// This code demonstrates the use of Q promises to handle asynchronous operations
+// in JavaScript. It simulates a function that takes some time to compute the answer
+// to a question, and it uses .then and .catch to handle the result.
+
+var answerContainer = document.querySelector('#answer');
+
+function whatIsTheMeaningOfLifeQ() {
+  answerContainer.classList.add('heartbeat');
   var deferred = Q.defer();
 
   setTimeout(function () {
+    answerContainer.classList.remove('heartbeat');
     if (Math.random() > 0.5) {
-      deferred.resolve('Success! Data loaded.');
+      deferred.resolve(42);
     } else {
-      deferred.reject(new Error('Something went wrong.'));
+      deferred.reject(new Error("I don't have a clue."));
     }
-  }, 1000);
+  }, Math.floor(Math.random() * 5000) + 3000);
 
   return deferred.promise;
 }
 
-// Usage
-asyncOperation()
+whatIsTheMeaningOfLifeQ()
   .then(function (result) {
-    console.log('Resolved:', result);
+    answerContainer.classList.add('success');
+    answerContainer.textContent = 'The answer is: ' + result;
   })
   .catch(function (error) {
-    console.log('Rejected:', error.message);
+    answerContainer.classList.add('fail');
+    answerContainer.textContent = 'Unfortunately, ' + error.message;
   });

@@ -1,21 +1,31 @@
-// Example using callbacks and ES3 syntax (no promises, no arrow functions,
-// no let/const)
-function asyncOperation(successCallback, errorCallback) {
+// This code demonstrates the use of callbacks to handle asynchronous operations
+// in JavaScript. It simulates a function that takes some time to compute the answer
+// to a question, and it uses success and error callbacks to handle the result.
+// This approach is common in older JavaScript code before the introduction of
+// Promises (also, no const and let, no arrow functions).
+
+var answerContainer = document.querySelector('#answer');
+
+function whatIsTheMeaningOfLife(successCallback, errorCallback) {
+  answerContainer.classList.add('heartbeat');
+
   setTimeout(function () {
+    answerContainer.classList.remove('heartbeat');
     if (Math.random() > 0.5) {
-      successCallback('Success! Data loaded.');
+      successCallback(42);
     } else {
-      errorCallback(new Error('Something went wrong.'));
+      errorCallback(new Error("I don't have a clue."));
     }
-  }, 1000);
+  }, Math.floor(Math.random() * 5000) + 3000);
 }
 
-// Usage
-asyncOperation(
+whatIsTheMeaningOfLife(
   function (result) {
-    console.log('Resolved:', result);
+    answerContainer.classList.add('success');
+    answerContainer.textContent = 'The answer is: ' + result;
   },
   function (error) {
-    console.log('Rejected:', error.message);
+    answerContainer.classList.add('fail');
+    answerContainer.textContent = 'Unfortunately, ' + error.message;
   }
 );

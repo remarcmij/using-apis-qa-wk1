@@ -3,25 +3,32 @@
 // also regular functions instead of arrow functions as the latter only became
 // available in the later versions of JavaScript (ES6).
 
-function asyncOperation() {
+var answerContainer = document.querySelector('#answer');
+
+function whatIsTheMeaningOfLife() {
+  answerContainer.classList.add('heartbeat');
   var deferred = $.Deferred();
 
   setTimeout(function () {
+    answerContainer.classList.remove('heartbeat');
     if (Math.random() > 0.5) {
-      deferred.resolve('Success! Data loaded.');
+      deferred.resolve(42);
     } else {
-      deferred.reject(new Error('Something went wrong.'));
+      deferred.reject(new Error("I don't have a clue."));
     }
-  }, 1000);
+  }, Math.floor(Math.random() * 5000) + 3000);
 
   return deferred.promise();
 }
 
-// Usage
-var promise = asyncOperation();
+var promise = whatIsTheMeaningOfLife();
+
 promise.done(function (result) {
-  console.log('Resolved:', result);
+  answerContainer.classList.add('success');
+  answerContainer.textContent = 'The answer is: ' + result;
 });
+
 promise.fail(function (error) {
-  console.log('Rejected:', error.message);
+  answerContainer.classList.add('fail');
+  answerContainer.textContent = 'Unfortunately, ' + error.message;
 });
