@@ -4,7 +4,7 @@
 
 var answerContainer = document.querySelector('#answer');
 
-function whatIsTheMeaningOfLifeQ() {
+function whatIsTheMeaningOfLife() {
   answerContainer.classList.add('heartbeat');
   var deferred = Q.defer();
 
@@ -20,12 +20,16 @@ function whatIsTheMeaningOfLifeQ() {
   return deferred.promise;
 }
 
-whatIsTheMeaningOfLifeQ()
-  .then(function (result) {
-    answerContainer.classList.add('success');
-    answerContainer.textContent = 'The answer is: ' + result;
-  })
-  .catch(function (error) {
-    answerContainer.classList.add('fail');
-    answerContainer.textContent = 'Unfortunately, ' + error.message;
-  });
+function main() {
+  whatIsTheMeaningOfLife()
+    .then(function (result) {
+      answerContainer.classList.add('success');
+      answerContainer.textContent = 'The answer is: ' + result;
+    })
+    .catch(function (error) {
+      answerContainer.classList.add('fail');
+      answerContainer.textContent = 'Unfortunately, ' + error.message;
+    });
+}
+
+window.addEventListener('load', main);

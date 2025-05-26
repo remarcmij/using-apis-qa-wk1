@@ -17,15 +17,15 @@ function main() {
   });
 
   const promise4 = promise3.catch(function onRejected() {
-    console.log('catch#3');
+    console.log('catch#1');
   });
 
   const promise5 = promise4.catch(function onRejected() {
-    console.log('catch#4');
+    console.log('catch#2');
   });
 
   const promise6 = promise5.then(function onFulfilled() {
-    console.log('then#5');
+    console.log('then#3');
   });
 
   console.log('<<< main ending >>>');

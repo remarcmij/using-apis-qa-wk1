@@ -1,3 +1,5 @@
+// This code demonstrates the use async/await to consume ES6 Promises.
+
 const answerContainer = document.querySelector('#answer');
 
 function whatIsTheMeaningOfLifeES6() {
@@ -14,7 +16,7 @@ function whatIsTheMeaningOfLifeES6() {
   });
 }
 
-async function displayMeaningOfLife() {
+async function main() {
   try {
     const result = await whatIsTheMeaningOfLifeES6();
     answerContainer.classList.add('success');
@@ -25,4 +27,4 @@ async function displayMeaningOfLife() {
   }
 }
 
-displayMeaningOfLife();
+main();

@@ -1,5 +1,5 @@
 // Comment out the import statement to use native Promises
-// import { CustomPromise as Promise } from './custom/promise.js';
+import { CustomPromise as Promise } from './custom/promise.js';
 
 function main() {
   console.log('<<< main starting >>>');
@@ -16,13 +16,13 @@ function main() {
       console.log('then#2');
     })
     .catch(function onRejected() {
-      console.log('catch#3');
+      console.log('catch#1');
     })
     .catch(function onRejected() {
-      console.log('catch#4');
+      console.log('catch#2');
     })
     .then(function onFulfilled() {
-      console.log('then#5');
+      console.log('then#3');
     });
 
   console.log('<<< main ending >>>');

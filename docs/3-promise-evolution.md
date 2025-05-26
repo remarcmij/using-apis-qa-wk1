@@ -14,7 +14,7 @@ Promises were introduced as a native feature in JavaScript with ES2015 (ES6). Ho
 | 2015 | ES2015 native `Promise` support. Broad browser support in 2016. | [4-promises-es6](promise-evolution/4-promises-es6) |
 | 2017 | ES2017 native `async/await` support. Broad browser support in 2018. | [5-async-await](promise-evolution/5-async-await) |
 
-Notes: 
+Notes:
 
 1. In modern applications we prefer native promises over the older `jQuery` and external promise libraries. The examples for the older versions are provided here for demo purposes only.
 2. The `async/await` syntax is the topic for week 2. We show it here to wet your appetite, but stick to `.then()` and `.catch()` for this week's assignments.

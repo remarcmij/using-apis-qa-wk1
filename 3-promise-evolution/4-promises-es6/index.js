@@ -1,3 +1,6 @@
+// This code demonstrates the use of ES6 Promises to handle asynchronous operations
+// in JavaScript.
+
 const answerContainer = document.querySelector('#answer');
 
 function whatIsTheMeaningOfLifeES6() {
@@ -14,12 +17,16 @@ function whatIsTheMeaningOfLifeES6() {
   });
 }
 
-whatIsTheMeaningOfLifeES6()
-  .then((result) => {
-    answerContainer.classList.add('success');
-    answerContainer.textContent = 'The answer is: ' + result;
-  })
-  .catch((error) => {
-    answerContainer.classList.add('fail');
-    answerContainer.textContent = 'Unfortunately, ' + error.message;
-  });
+function main() {
+  whatIsTheMeaningOfLifeES6()
+    .then((result) => {
+      answerContainer.classList.add('success');
+      answerContainer.textContent = 'The answer is: ' + result;
+    })
+    .catch((error) => {
+      answerContainer.classList.add('fail');
+      answerContainer.textContent = 'Unfortunately, ' + error.message;
+    });
+}
+
+window.addEventListener('load', main);

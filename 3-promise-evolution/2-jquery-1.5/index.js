@@ -21,14 +21,20 @@ function whatIsTheMeaningOfLife() {
   return deferred.promise();
 }
 
-var promise = whatIsTheMeaningOfLife();
+function main() {
+  // The promise is returned by the function and can be used to handle the result
+  // or error in a more elegant way than using callbacks.
+  var promise = whatIsTheMeaningOfLife();
 
-promise.done(function (result) {
-  answerContainer.classList.add('success');
-  answerContainer.textContent = 'The answer is: ' + result;
-});
+  promise.done(function (result) {
+    answerContainer.classList.add('success');
+    answerContainer.textContent = 'The answer is: ' + result;
+  });
 
-promise.fail(function (error) {
-  answerContainer.classList.add('fail');
-  answerContainer.textContent = 'Unfortunately, ' + error.message;
-});
+  promise.fail(function (error) {
+    answerContainer.classList.add('fail');
+    answerContainer.textContent = 'Unfortunately, ' + error.message;
+  });
+}
+
+window.addEventListener('load', main);

@@ -13,7 +13,8 @@ promise
   });
 
 /* 
-What will be the output of the above code?
+What will be the output of the above code? Where appropriate, fill in the blanks
+below:
 
 1 ...
 2 ...

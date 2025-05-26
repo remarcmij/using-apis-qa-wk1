@@ -19,13 +19,17 @@ function whatIsTheMeaningOfLife(successCallback, errorCallback) {
   }, Math.floor(Math.random() * 5000) + 3000);
 }
 
-whatIsTheMeaningOfLife(
-  function (result) {
-    answerContainer.classList.add('success');
-    answerContainer.textContent = 'The answer is: ' + result;
-  },
-  function (error) {
-    answerContainer.classList.add('fail');
-    answerContainer.textContent = 'Unfortunately, ' + error.message;
-  }
-);
+function main() {
+  whatIsTheMeaningOfLife(
+    function (result) {
+      answerContainer.classList.add('success');
+      answerContainer.textContent = 'The answer is: ' + result;
+    },
+    function (error) {
+      answerContainer.classList.add('fail');
+      answerContainer.textContent = 'Unfortunately, ' + error.message;
+    }
+  );
+}
+
+window.addEventListener('load', main);

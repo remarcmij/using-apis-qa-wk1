@@ -18,7 +18,8 @@ foo.then(() => {
 });
 
 /* 
-What will be the output of the above code?
+What will be the output of the above code? Where appropriate, fill in the blanks
+below. If necessary, reorder the numbers to match the order of execution.
 
 1 ...
 2 ...
@@ -26,5 +27,5 @@ What will be the output of the above code?
 3 ...
 4 ...
 
-5
+5 ...
 */
