@@ -56,7 +56,7 @@ To run the example, `cd` into the `6-promise-finally` folder and run:
 node 1-finally.js`
 ```
 
-When you run the code, you will see the "Thinking..." messages in the console, followed by either the correct answer or an error message. However, the "Thinking..." messages will continue to be logged even after the answer is given, because the `setInterval()` is still running. You need to stop the interval manually with ctrl+c in the terminal.
+When you run the code, you will see the "Thinking..." messages in the console, followed by either the correct answer or an error message. However, the "Thinking..." messages will continue to be logged even after the answer is given, because the `setInterval()` is still running. To stop the program running in the terminal, you need to press <kbd>CTRL</kbd>+<kbd>C</kbd> on the keyboard.
 
 ### Example 2: `2-finally.js`
 
