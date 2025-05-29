@@ -13,6 +13,9 @@ promise
   });
 
 /* 
+How many promises are created (either explicitly or implicitly) in total when 
+running the above code?
+
 What will be the output of the above code? Where appropriate, fill in the blanks
 below:
 

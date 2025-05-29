@@ -9,6 +9,10 @@ let isRunning = false;
 // Note: This is not recommended for real applications as it can freeze the UI.
 function setTimeoutBlocking(callbackFn, time) {
   const endTime = Date.now() + time;
+
+  // Busy-wait loop that blocks the main thread until the specified time has
+  // passed.
+  // This will prevent any other code from running, including UI updates.
   while (Date.now() < endTime) {
     // do nothing
   }
