@@ -7,17 +7,18 @@ Promises were introduced as a native feature in JavaScript with ES2015 (ES6). Ho
 | Year | Description | Example |
 |------|-------------|---------|
 | 1995? | Callbacks   | [1-callbacks](promise-evolution/1-callbacks) |
-| 2011 | 2011 jQuery 1.5 `deferred` promise-_like_ object, e.g. `$.get()` Ajax call: <https://api.jquery.com/category/deferred-object/> | [2-jquery-1.5](promise-evolution/2-jquery-1.5) |
-| 2011 | Q Promise promise library. | [3-q-library](promise-evolution/3-q-library) |
-| 2012 | Promise/A+ specification: <https://promisesaplus.com/> | - |
-| 2013 | Bluebird promise library. | - |
-| 2015 | ES2015 native `Promise` support. Broad browser support in 2016. | [4-promises-es6](promise-evolution/4-promises-es6) |
-| 2017 | ES2017 native `async/await` support. Broad browser support in 2018. | [5-async-await](promise-evolution/5-async-await) |
+| 2011 | 2011 jQuery 1.5 [`deferred`](https://api.jquery.com/category/deferred-object/) promise-_like_ object. | [2-jquery-1.5](promise-evolution/2-jquery-1.5) |
+| 2011 | [Q](https://github.com/kriskowal/q) promise library (no longer recommended) | [3-q-library](promise-evolution/3-q-library) |
+| 2012 | [Promise/A+ specification](https://promisesaplus.com/): a standardized set of rules that define how promises should behave, ensuring consistency across different implementations.| - |
+| 2013 | [Bluebird](https://github.com/petkaantonov/bluebird)  promise library (no longer recommended) | - |
+| 2015 | ES2015 native [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) support. Broad browser support in 2016. | [4-promises-es6](promise-evolution/4-promises-es6) |
+| 2017 | ES2017 native [`async/await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) support. Broad browser support in 2018. | [5-async-await](promise-evolution/5-async-await) |
 
 Notes:
 
-1. In modern applications we prefer native promises over the older `jQuery` and external promise libraries. The examples for the older versions are provided here for demo purposes only.
-2. The `async/await` syntax is the topic for week 2. We show it here to wet your appetite, but stick to `.then()` and `.catch()` for this week's assignments.
+1. In modern applications we prefer native promises over the older `jQuery` and external promise libraries. Native promises are faster, more reliable, and have better integration with modern JavaScript features like async/await.
+ The examples for the older versions are provided here for demo purposes only.
+2. The `async/await` syntax is the topic for week 2. We show it here to give you a preview, but stick to `.then()` and `.catch()` for this week's assignments.
 
 ## Examples
 

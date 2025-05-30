@@ -1,5 +1,12 @@
 // Comment out the import statement to use native Promises
-// import { CustomPromise as Promise } from './custom/promise.js';
+// import { CustomPromise as Promise } from '../lib/custom-promise.js';
+
+// In this version we have split up the chain of promises into separate variables
+// that can easily be linked to the output that the custom promise library
+// produces. We also used named function for the `then` and `catch` handlers
+// instead of arrow functions for easy reference in the README.
+//
+// Functionality-wise this is the same as the previous version.
 
 function main() {
   console.log('<<< main starting >>>');

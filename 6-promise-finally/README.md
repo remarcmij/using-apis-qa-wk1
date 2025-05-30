@@ -4,7 +4,7 @@ Folder: `docs/6-promise-finally.md`
 
 MDN Web Docs: [Promise.prototype.finally()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally)
 
-Promise.finally() is a method that allows you to execute a callback function when a Promise is settled, regardless of whether it was fulfilled or rejected. This can be useful for cleanup actions or to perform operations that should always run after the Promise's resolution.
+Promise.finally() is a method that allows you to execute a callback function when a Promise is settled, regardless of whether it was fulfilled or rejected. This can be useful for cleanup actions or to perform operations that should always run after the Promise's resolution, e.g., stopping timers, closing connections, or freeing resources.
 
 ## Examples
 
@@ -60,7 +60,7 @@ When you run the code, you will see the "Thinking..." messages in the console, f
 
 ### Example 2: `2-finally.js`
 
-In this example, we use both `.then()` and  `.catch()` to stop the "Thinking..." messages after the Promise is settled by calling `clearInterval()` in both. We need both methods because we don't know in advance whether the Promise will be fulfilled or rejected. We also need to ensure that the promise returned by `whatIsTheMeaningOfLife()` still reflects the answer (i.e. 42 or "I don't have a clue."). That's why we return the `result` from the `.then()` handler and rethrow the error in the `.catch()` handler.
+In this example, we use both `.then()` and  `.catch()` to stop the "Thinking..." messages after the Promise is settled by calling `clearInterval()` in both. We need both methods because we don't know in advance whether the Promise will be fulfilled or rejected, and we need to clear the interval in both cases. Moreover, we also need to ensure that the promise returned by `whatIsTheMeaningOfLife()` still reflects the answer (i.e. 42 or "I don't have a clue."). That's why we return the `result` from the `.then()` handler and rethrow the error in the `.catch()` handler.
 
 To run the example, run the following command in the terminal:
 

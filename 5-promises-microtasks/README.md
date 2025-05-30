@@ -1,14 +1,14 @@
 # Promises, Event Loop and Microtasks
 
-Folder: [5-promises-event-loop-microtasks](5-promises-event-loop-microtasks/)
+Folder: [5-promises-microtasks](5-promises-microtasks/)
 
 This folder contains examples and explanations of how promises, the event loop, and microtasks work together in JavaScript.
 
 > **Note**: The goal of this section is to help you understand how promises work under the hood and how they interact with the event loop and microtasks. You do not need think in these terms when you use promises in your own code. However, understanding these concepts will help you better understand how JavaScript handles asynchronous operations and how to write more efficient and effective code.
 
-When a promise becomes settled _and_ its `.then()` method is called at least once, it creates a microtask and enqueues it in the microtask queue. This microtask is responsible for executing the appropriate callbacks (from either `.then()` or `.catch()`) associated with the promise. The event loop processes the microtask queue before the task queue, ensuring that promise callbacks are executed before any other tasks in the task queue.
+When a promise becomes settled (i.e., either `fulfilled` or `rejected`) _and_ you call `.then()` on it, it creates a microtask and enqueues it in the microtask queue. This microtask runs the code inside `.then()` or `.catch()`. The event loop handles the microtask queue before the task queue, ensuring that promise callbacks are executed before any other tasks.
 
-Each call to the `.then()` method of a promise creates a new promise. (Note that [`.catch()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) is just syntactic sugar for `.then(null, onRejected)`, i.e. it is just a `.then()` in disguise). Because each `.then()` and `.catch()` creates a new promise, you can chain them together to create a sequence of asynchronous operations.
+Every time you use `.then()` on a promise, it creates a new promise. The same goes for `.catch()`<sup>[1]</sup>; it’s just a special version of `.then()` for handling errors. You can connect promises together in a chain to run multiple steps one after another.
 
 To illustrate how the microtasks are used by promises, the examples in this folder use a custom replacement of `Promise` called `CustomPromise`. This replacement is a simplified version of the native `Promise` object, designed to logs its internal events to the console. (There is no need to understand its internal implementation to follow along, nor do we expect this from you.)
 
@@ -22,6 +22,10 @@ Each promise that created with `CustomPromise` is assigned a unique ID that is u
 | A microtask is enqueued | `[microtask#1 enqueued]` |
 | A microtask starts | `[microtask#1 start]` |
 | A microtask exits | `[microtask#1 exit]` |
+
+Notes:
+
+1. [`.catch()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch) is just syntactic sugar for `.then(null, onRejected)`, i.e. it is just a `.then()` in disguise.
 
 ## Examples
 
@@ -52,7 +56,7 @@ Note that the `.catch()` method calls in this (and the next) example are somewhe
 Let's first try and run this example using the native `Promise` object. For this, we start off with the line that imports the `CustomPromise` class commented out, like this:
 
 ```javascript
-// import { CustomPromise as Promise } from './custom/promise.js';
+// import { CustomPromise as Promise } from '../lib/custom-promise.js';
 ```
 
 Now, run the example by using the following command in the terminal (you can again use tab completion to help you by typing `node 1` and then pressing the `Tab` key):
@@ -121,12 +125,14 @@ then#3
 
 #### Quick Facts
 
-- Each `.then()` or `.catch()` method called on a promise returns a new promise. The return value of the `onFulfilled` or `onRejected` callback of a `.then()` method becomes the fulfillment value of the new promise<sup>1</sup>.
+- Each `.then()` or `.catch()` method called on a promise returns a new promise. Whatever you return inside `.then()` or `.catch()` becomes the result of the next promise in the chain.<sup>[1]</sup>.
 - When a promise with a `.then()` becomes settled (i.e. fulfilled or rejected), it enqueues a microtask to schedule the processing of that `.then()`.
-- When the currently executing code runs to completion, the event loop picks up the next microtask from the microtask queue and executes it.
+- When the current code runs to completion, the event loop picks up the next microtask from the microtask queue and executes it.
 - The microtask queue is processed before the task queue, ensuring that promise callbacks are executed before any other tasks in the task queue.
 
-    Note [1]: If the `onFulfilled` or `onRejected` callback itself returns a promise, this promise will be used as the fulfillment value of the new promise. For more details, see the MDN documentation on [Promise.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
+Notes:
+
+1. If the `onFulfilled` or `onRejected` callback itself returns a promise, this promise will be used as the fulfillment value of the new promise. For more details, see the MDN documentation on [Promise.then()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then).
 
 Before we will go over the preceding output in more detail, let's take a look at a version of the code that makes it easier to reason about the association between the output and the code. This is discussed in the next section.
 
@@ -177,7 +183,7 @@ Open the file `3-rejected-chain.js` in the VSCode editor. This code is functiona
 Let's run this example using the native `Promise` object first. For this, make sure that the line that imports the `CustomPromise` class is commented out. The code should look like this:
 
 ```javascript
-// import { CustomPromise as Promise } from './custom/promise.js';
+// import { CustomPromise as Promise } from '../lib/custom-promise.js';
 ```
 
 Now, run the example by using the following command in the terminal:

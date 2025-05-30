@@ -1,5 +1,5 @@
 // Comment out the import statement to use native Promises
-import { CustomPromise as Promise } from './custom/promise.js';
+// import { CustomPromise as Promise } from '../lib/custom-promise.js';
 
 function main() {
   console.log('<<< main starting >>>');
