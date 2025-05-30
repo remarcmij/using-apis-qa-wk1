@@ -1,6 +1,6 @@
 # Promise Evolution
 
-Folder: [3-promise-evolution](3-promise-evolution/)
+Folder: `3-promise-evolution`
 
 Promises were introduced as a native feature in JavaScript with ES2015 (ES6). However, the concept of promises has been around for a long time and has evolved over the years. Below is a timeline of significant events in the evolution of promises:
 

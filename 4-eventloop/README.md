@@ -1,6 +1,6 @@
 # Event Loop and Call Stack
 
-Folder : [4-event-loop-call-stack](4-event-loop-call-stack/)
+Folder: `4-eventloop`
 
 This folder contains examples and explanations of the event loop and call stack in JavaScript. It demonstrates how asynchronous code is executed and how the call stack and event loop work together to manage execution contexts.
 

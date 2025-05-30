@@ -1,6 +1,6 @@
 # Promise.finally()
 
-Folder: `docs/6-promise-finally.md`
+Folder: `6-promise-finally`
 
 MDN Web Docs: [Promise.prototype.finally()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally)
 

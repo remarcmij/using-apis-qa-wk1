@@ -1,5 +1,7 @@
 # Cat Walk Prep Exercise
 
+Folder: `7-catwalk`
+
 ## Examples
 
 ### Example 1: `1-catwalk-prep`
