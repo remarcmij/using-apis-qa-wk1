@@ -1,5 +1,13 @@
 # Promises, Event Loop and Microtasks
 
+The following YouTube video provide a good introduction to the event loop and microtasks:
+
+- [JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue](https://www.youtube.com/watch?v=eiC58R16hb8) [12:34 min] by Lydia Hallie
+
+## Overview
+
+This section explores how promises, the event loop, and microtasks work together in JavaScript. It builds on the previous sections about promises and the event loop, providing a deeper understanding of how asynchronous operations are handled in JavaScript.
+
 Folder: [5-promises-microtasks](5-promises-microtasks/)
 
 This folder contains examples and explanations of how promises, the event loop, and microtasks work together in JavaScript.

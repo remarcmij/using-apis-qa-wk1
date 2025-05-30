@@ -24,9 +24,3 @@
 7. [Prep exercise: Cat Walk](7-catwalk/README.md)
 
 8. Q&A
-
-More event loop videos:
-
-- <https://youtu.be/eiC58R16hb8?si=NESGMiIrCvNFrEjT>
-- <https://youtu.be/cCOL7MC4Pl0>
-  
