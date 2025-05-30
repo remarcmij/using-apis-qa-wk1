@@ -2,7 +2,7 @@
 // import { CustomPromise as Promise } from '../lib/custom-promise.js';
 
 function main() {
-  console.log('<<< main starting >>>');
+  console.log('[main start]');
 
   const promise = new Promise((resolve, reject) => {
     resolve();
@@ -25,7 +25,7 @@ function main() {
       console.log('then#3');
     });
 
-  console.log('<<< main ending >>>');
+  console.log('[main end]');
 }
 
 main();

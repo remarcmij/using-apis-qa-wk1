@@ -67,9 +67,9 @@ node 1-resolved-chain.js
 
 You should see the following output in the terminal:
 
-```text
-<<< main starting >>>
-<<< main ending >>>
+```plaintext
+[main start]
+[main end]
 then#1
 then#2
 then#3
@@ -85,7 +85,8 @@ node 1-resolved-chain.js
 
 You should see the same output as above but now interspersed with additional messages (in square brackets) from the custom Promise implementation:
 
-```text
+```plaintext
+[main start]
 [promise#1 fulfilled → undefined]
 [microtask#1 enqueued]
 [promise#2 created (pending)]
@@ -93,34 +94,34 @@ You should see the same output as above but now interspersed with additional mes
 [promise#4 created (pending)]
 [promise#5 created (pending)]
 [promise#6 created (pending)]
-<<< main ending >>>
+[main end]
 
 [microtask#1 start]
 then#1
 [promise#2 fulfilled → undefined]
 [microtask#2 enqueued]
-[microtask#1 exit]
+[microtask#1 end]
 
 [microtask#2 start]
 then#2
 [promise#3 fulfilled → undefined]
 [microtask#3 enqueued]
-[microtask#2 exit]
+[microtask#2 end]
 
 [microtask#3 start]
 [promise#4 fulfilled → undefined]
 [microtask#4 enqueued]
-[microtask#3 exit]
+[microtask#3 end]
 
 [microtask#4 start]
 [promise#5 fulfilled → undefined]
 [microtask#5 enqueued]
-[microtask#4 exit]
+[microtask#4 end]
 
 [microtask#5 start]
 then#3
 [promise#6 fulfilled → undefined]
-[microtask#5 exit]
+[microtask#5 end]
 ```
 
 #### Quick Facts
@@ -161,8 +162,8 @@ node 2-resolved-unchained.js
 4. As the event loop continues, the remaining promises are settled in the following order:
 
 - Promise#3 is fulfilled when microtask#2 is executed.
-- Promise#4 is fulfilled when microtask#3 is executed.
-- Promise#5 is fulfilled when microtask#4 is executed.
+- Promise#4 is fulfilled when microtask#3 is executed (handler not called).
+- Promise#5 is fulfilled when microtask#4 is executed (handler not called)
 - Promise#6 is fulfilled when microtask#5 is executed.
 
   Note that the `onRejection` callbacks of the `.catch()` methods are not called in this example, because there is no rejected promise in the chain. Instead, the `.catch()` methods pass on a promise that is fulfilled to the value of the previous promise (in this case, `undefined`).
@@ -194,9 +195,9 @@ node 3-rejected-chain.js
 
 You should see the following output in the terminal:
 
-```text
-<<< main starting >>>
-<<< main ending >>>
+```plaintext
+[main start]
+[main end]
 catch#1
 then#3
 ```
@@ -211,8 +212,8 @@ node 3-rejected-chain.js
 
 You should see the same output as above but now interspersed with additional messages (in square brackets) from the custom Promise implementation (see below). A detailed analysis of the output is left as an exercise for you.
 
-```text
-<<< main starting >>>
+```plaintext
+[main start]
 [promise#1 rejected → undefined]
 [microtask#1] enqueued
 [promise#2 created (pending)]
@@ -220,31 +221,31 @@ You should see the same output as above but now interspersed with additional mes
 [promise#4 created (pending)]
 [promise#5 created (pending)]
 [promise#6 created (pending)]
-<<< main ending >>>
+[main end]
 
 [microtask#1 start]
 [promise#2 rejected → undefined]
 [microtask#2] enqueued
-[microtask#1 exit]
+[microtask#1 end]
 
 [microtask#2 start]
 [promise#3 rejected → undefined]
 [microtask#3] enqueued
-[microtask#2 exit]
+[microtask#2 end]
 
 [microtask#3 start]
 catch#1
 [promise#4 fulfilled → undefined]
 [microtask#4 enqueued]
-[microtask#3 exit]
+[microtask#3 end]
 
 [microtask#4 start]
 [promise#5 fulfilled → undefined]
 [microtask#5 enqueued]
-[microtask#4 exit]
+[microtask#4 end]
 
 [microtask#5 start]
 then#3
 [promise#6 fulfilled → undefined]
-[microtask#5 exit]
+[microtask#5 end]
 ```
