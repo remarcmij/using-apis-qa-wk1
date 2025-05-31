@@ -1,12 +1,22 @@
 # Promises, Event Loop and Microtasks
 
-The following YouTube video provide a good introduction to the event loop and microtasks:
+## TL;DR
 
-- [JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue](https://www.youtube.com/watch?v=eiC58R16hb8) [12:34 min] by Lydia Hallie
+This article explains how promises, the event loop, and microtasks interact in JavaScript. It includes examples using both native promises and a custom `CustomPromise` class that logs internal events for better understanding. Key points:
+
+- Promises enqueue microtasks for `.then()` and `.catch()` callbacks, processed before tasks in the event loop.
+- `.then()` and `.catch()` create new promises, chaining operations.
+- Provided examples demonstrate promise fulfillment, rejection, and microtask execution order.
+
+## Introductory Video
+
+The following YouTube video provides a good introduction to the event loop and microtasks and is an excellent starting point for this section:
+
+- [JavaScript Visualized - Event Loop, Web APIs, (Micro)task Queue](https://www.youtube.com/watch?v=eiC58R16hb8) [12:34 min], by Lydia Hallie.
 
 ## Overview
 
-This section explores how promises, the event loop, and microtasks work together in JavaScript. It builds on the previous sections about promises and the event loop, providing a deeper understanding of how asynchronous operations are handled in JavaScript.
+Here, we explore how promises, the event loop, and microtasks work together in JavaScript. It builds on the previous sections about promises and the event loop, providing a deeper understanding of how asynchronous operations are handled in JavaScript.
 
 Folder: `5-promises-microtasks`
 
