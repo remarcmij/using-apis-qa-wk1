@@ -15,7 +15,7 @@ function whatIsTheMeaningOfLife() {
       if (Math.random() > 0.5) {
         resolve(42);
       } else {
-        reject(new Error("I don't have a clue."));
+        reject(new Error('Come back in 7.5 million years and ask me again!'));
       }
     }, Math.floor(Math.random() * 5000) + 3000);
   }).finally(() => {
@@ -29,5 +29,5 @@ whatIsTheMeaningOfLife()
     console.log('The answer is:', result);
   })
   .catch((err) => {
-    console.log('Unfortunately,', err.message);
+    console.log(err.message);
   });

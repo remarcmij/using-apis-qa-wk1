@@ -56,11 +56,11 @@ To run the example, `cd` into the `6-promise-finally` folder and run:
 node 1-finally.js`
 ```
 
-When you run the code, you will see the "Thinking..." messages in the console, followed by either the correct answer or an error message. However, the "Thinking..." messages will continue to be logged even after the answer is given, because the `setInterval()` is still running. To stop the program running in the terminal, you need to press <kbd>CTRL</kbd>+<kbd>C</kbd> on the keyboard.
+The main focus of this code is to simulate a long-running asynchronous operation (thinking about the meaning of life), display a dynamic "Thinking..." message, and handle the result or error. However, there is a subtle issue: the interval timer (setInterval) is never cleared, so the "Thinking..." message continues even after the promise settles. To force the program to stop running in the terminal, you need to press <kbd>CTRL</kbd>+<kbd>C</kbd> on the keyboard.
 
 ### Example 2: `2-finally.js`
 
-In this example, we use both `.then()` and  `.catch()` to stop the "Thinking..." messages after the Promise is settled by calling `clearInterval()` in both. We need both methods because we don't know in advance whether the Promise will be fulfilled or rejected, and we need to clear the interval in both cases. Moreover, we also need to ensure that the promise returned by `whatIsTheMeaningOfLife()` still reflects the answer (i.e. 42 or "I don't have a clue."). That's why we return the `result` from the `.then()` handler and rethrow the error in the `.catch()` handler.
+In this example, we use `.then()` and  `.catch()` to stop the "Thinking..." messages after the Promise is settled by calling `clearInterval()` in both `.then()` and `catch()`. We need both because we don't know in advance whether the Promise will be fulfilled or rejected, and we need to clear the interval in either case. Moreover, we also need to ensure that the promise returned by `whatIsTheMeaningOfLife()` still reflects the answer (i.e. 42 or "I don't have a clue."). That's why we return the `result` from the `.then()` handler and rethrow the error in the `.catch()` handler.
 
 To run the example, run the following command in the terminal:
 
