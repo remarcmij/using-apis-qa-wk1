@@ -28,7 +28,7 @@ When a promise becomes settled (i.e., either `fulfilled` or `rejected`) _and_ yo
 
 Every time you use `.then()` on a promise, it creates a new promise. The same goes for `.catch()`<sup>[1]</sup>; it’s just a special version of `.then()` for handling errors. You can connect promises together in a chain to run multiple steps one after another.
 
-To illustrate how the microtasks are used by promises, the examples in this folder use a custom replacement of `Promise` called `CustomPromise`. This replacement is a simplified version of the native `Promise` object, designed to logs its internal events to the console. (There is no need to understand its internal implementation to follow along, nor do we expect this from you.)
+To illustrate how the microtasks are used by promises, the examples in this folder use a custom replacement of `Promise` called `CustomPromise`. This replacement is a simplified version of the native `Promise` object, designed to logs its internal events to the console. (There is no need to understand its internal implementation to follow along, nor do we expect this from you. But if you are curious, you can find the implementation in the file [`lib/custom-promise.js`](../lib/custom-promise.js) and a description in the accompanying [README](../lib/README.md).)
 
 Each promise that created with `CustomPromise` is assigned a unique ID that is used to label the output of each event, as illustrated in the table below:
 
