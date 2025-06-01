@@ -1,5 +1,7 @@
 # Promises, Event Loop and Microtasks
 
+> For fun: Listen to the [podcast version](hhttps://raw.githubusercontent.com/remarcmij/using-apis-qa-wk1/main/5-promises-microtasks/notebooklm-audio-overview.mp3) of this README (generated with NotebookLM).
+
 ## TL;DR
 
 This article explains how promises, the event loop, and microtasks interact in JavaScript. It includes examples using both native promises and a custom `CustomPromise` class that logs internal events for better understanding. Key points:
