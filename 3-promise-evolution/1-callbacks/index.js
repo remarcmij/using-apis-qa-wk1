@@ -14,7 +14,9 @@ function whatIsTheMeaningOfLife(successCallback, errorCallback) {
     if (Math.random() > 0.5) {
       successCallback(42);
     } else {
-      errorCallback(new Error("I don't have a clue."));
+      errorCallback(
+        new Error('Come back in 7.5 million years and ask me again!')
+      );
     }
   }, Math.floor(Math.random() * 5000) + 3000);
 }
@@ -27,7 +29,7 @@ function main() {
     },
     function (error) {
       answerContainer.classList.add('fail');
-      answerContainer.textContent = 'Unfortunately, ' + error.message;
+      answerContainer.textContent = error.message;
     }
   );
 }

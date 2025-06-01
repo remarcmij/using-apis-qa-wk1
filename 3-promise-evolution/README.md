@@ -26,9 +26,41 @@ The examples are about finding the answer to [The Ultimate Question of Life, the
 
 To run an example, open the corresponding HTML file in a browser.
 
-Here is the code from the `index.js` file from the callbacks version:
+All examples will use a `whatIsTheMeaningOfLife()` function, which simulates a random delay before returning the answer or an error. The implementation differs across the examples to reflect the different methods as listed in the table above, but the core functionality remains the same.
+
+If you ask ChatGPT about the meaning of life, it will also tell you that the answer is 42:
+
+![meaning-of-life](../assets/meaning-of-life.png)
+
+Here is a GitHub Copilot generated explanation of the callbacks example, using `/explain #file:index.js`:
+
+---
+<< start of example explanation >>
+
+## Callback-based Asynchronous Example
+
+This example demonstrates how to handle asynchronous operations using callbacks—a foundational pattern in JavaScript, especially before Promises and async/await became standard. Understanding this approach is essential for grasping the evolution of asynchronous programming in JavaScript.
+
+### How It Works
+
+1. **Callback Functions:**  
+   The function `whatIsTheMeaningOfLife` receives two callbacks: one for handling success and one for handling errors. This pattern allows the function to notify the caller when the asynchronous operation completes.
+
+2. **Asynchronous Simulation:**  
+   The code uses `setTimeout` to simulate a delayed operation, similar to how you might wait for a network request or a long computation.
+
+3. **DOM Manipulation:**  
+   CSS classes are dynamically added and removed to provide visual feedback (e.g., animation during processing, color changes on success or failure).
+
+### Example Code
 
 ```javascript
+// This code demonstrates the use of callbacks to handle asynchronous operations
+// in JavaScript. It simulates a function that takes some time to compute the answer
+// to a question, and it uses success and error callbacks to handle the result.
+// This approach is common in older JavaScript code before the introduction of
+// Promises (also, no const and let, no arrow functions).
+
 var answerContainer = document.querySelector('#answer');
 
 function whatIsTheMeaningOfLife(successCallback, errorCallback) {
@@ -39,21 +71,46 @@ function whatIsTheMeaningOfLife(successCallback, errorCallback) {
     if (Math.random() > 0.5) {
       successCallback(42);
     } else {
-      errorCallback(new Error("I don't have a clue."));
+      errorCallback(new Error('Come back in 7.5 million years and ask me again!'));
     }
   }, Math.floor(Math.random() * 5000) + 3000);
 }
 
-whatIsTheMeaningOfLife(
-  function (result) {
-    answerContainer.classList.add('success');
-    answerContainer.textContent = 'The answer is: ' + result;
-  },
-  function (error) {
-    answerContainer.classList.add('fail');
-    answerContainer.textContent = 'Unfortunately, ' + error.message;
-  }
-);
+function main() {
+  whatIsTheMeaningOfLife(
+    function (result) {
+      answerContainer.classList.add('success');
+      answerContainer.textContent = 'The answer is: ' + result;
+    },
+    function (error) {
+      answerContainer.classList.add('fail');
+      answerContainer.textContent = error.message;
+    }
+  );
+}
+
+window.addEventListener('load', main);
 ```
 
-All examples will use a `whatIsTheMeaningOfLife()` function, which simulates a random delay before returning the answer or an error. The implementation differs across the examples to reflect the different methods as listed in the table above, but the core functionality remains the same.
+## Output Examples
+
+- **Success:**  
+  `The answer is: 42`
+
+- **Failure:**  
+  `Come back in 7.5 million years and ask me again!`
+
+### Key Takeaways
+
+- **Callback Hell:**  
+  Relying heavily on nested callbacks can make code difficult to read and maintain—a problem known as "callback hell." Modern JavaScript addresses this with Promises and async/await.
+
+- **Legacy Syntax:**  
+  This example intentionally uses `var` and traditional function expressions to illustrate older JavaScript practices. In modern codebases, prefer `const`/`let` and arrow functions for clarity and safety.
+
+- **Randomness:**  
+  The result is intentionally non-deterministic to mimic real-world uncertainty in asynchronous operations (e.g., network failures).
+
+<< end of example explanation >>
+
+---
