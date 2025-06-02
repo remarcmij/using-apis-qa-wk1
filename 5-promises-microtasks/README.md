@@ -222,7 +222,7 @@ catch#1
 then#3
 ```
 
-Developers new to promises might be surprised to see that the output includes the `then#5` message rather than `catch#4`. This is because the first `.catch(onRejected)` method (which is just syntactic sugar for `.then(null, onRejected)`) returns a new promise that is resolved to the value returned by its `onRejected` callback. The example callback has no `return` statement, therefore it implicitly returns `undefined`. The promise returned by the first `.catch()` is therefore a promise fulfilled with the value `undefined`. This is why the callback of the second `.catch()` is not called while the callback of the last `.then()` is called.
+Developers new to promises might be surprised to see that the output includes the `then#3` message rather than `catch#2`. This is because the first `.catch(onRejected)` method (which is just syntactic sugar for `.then(null, onRejected)`) returns a new promise that is resolved to the value returned by its `onRejected` callback. The example callback has no `return` statement, therefore it implicitly returns `undefined`. The promise returned by the first `.catch()` is therefore a promise fulfilled with the value `undefined`. This is why the callback of the second `.catch()` is not called while the callback of the last `.then()` is called.
 
 Let's now use the custom Promise implementation: uncomment the line that imports the `CustomPromise.js` class and run the example again:
 
