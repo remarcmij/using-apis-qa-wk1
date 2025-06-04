@@ -190,7 +190,7 @@ node 2-resolved-unchained.js
 
   Note also that there is no microtask#6 in this example, because `.then()` is not called on promise#6.
 
-Figure 1 below may help to illustrate the relationship between promises, the event loop, and microtasks in this example. It was adapted to include microtask from the original image in the [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) documentation.
+Figure 1 below may help to illustrate the relationship between promises, the event loop, and microtasks in this example. It was adapted to include microtasks from the original image in the [MDN Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) documentation.
 
 ![event loop](../assets/promise.png)
 <br><small>Figure 1: Promises, Event Loop and Microtasks</small>
