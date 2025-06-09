@@ -1,6 +1,6 @@
 # Promises, Event Loop and Microtasks
 
-> For fun: Listen to the [podcast version](https://soundcloud.com/jim-cramer-344248655/promises-event-loop-and-microtasks) of this README (generated with NotebookLM).
+> For fun: Listen to an [Audio Overview](https://soundcloud.com/jim-cramer-344248655/promises-event-loop-and-microtasks) of this README (generated with [NotebookLM](https://notebooklm.google/)).
 
 ## TL;DR
 
