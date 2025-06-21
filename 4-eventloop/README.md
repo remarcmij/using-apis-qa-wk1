@@ -24,7 +24,7 @@ The event loop processes the microtask queue before the task queue, which means 
 2. Open the Developer Tools (F12) .
 3. Press the "Start" button to start. Because the demo code includes a `debugger` statement inside the `console_log()` function, the Developer Tools will automatically switch to the Sources tab, with execution being paused at the `debugger` statement, as shown below:
 
-   ![debugger](assets/event-loop-call-stack.png)
+   ![debugger](../assets/event-loop-call-stack.png)
 
 4. On the right-hand side, you will see the Call Stack and Scope sections. The Call Stack shows the current execution context, while the Scope section shows the variables in the current scope. Notice that the Call Stack shows that the `console_log()` function is currently at the top of the stack and paused at line 3 (i.e., at the `debugger` statement). This function was called by the `main()` function in line 7.
 

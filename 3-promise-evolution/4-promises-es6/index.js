@@ -3,7 +3,7 @@
 
 const answerContainer = document.querySelector('#answer');
 
-function whatIsTheMeaningOfLifeES6() {
+function whatIsTheMeaningOfLife() {
   answerContainer.classList.add('heartbeat');
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -18,7 +18,7 @@ function whatIsTheMeaningOfLifeES6() {
 }
 
 function main() {
-  whatIsTheMeaningOfLifeES6()
+  whatIsTheMeaningOfLife()
     .then((result) => {
       answerContainer.classList.add('success');
       answerContainer.textContent = 'The answer is: ' + result;

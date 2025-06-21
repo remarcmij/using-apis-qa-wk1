@@ -2,7 +2,7 @@
 
 const answerContainer = document.querySelector('#answer');
 
-function whatIsTheMeaningOfLifeES6() {
+function whatIsTheMeaningOfLife() {
   answerContainer.classList.add('heartbeat');
   return new Promise((resolve, reject) => {
     setTimeout(() => {
@@ -18,7 +18,7 @@ function whatIsTheMeaningOfLifeES6() {
 
 async function main() {
   try {
-    const result = await whatIsTheMeaningOfLifeES6();
+    const result = await whatIsTheMeaningOfLife();
     answerContainer.classList.add('success');
     answerContainer.textContent = 'The answer is: ' + result;
   } catch (error) {
