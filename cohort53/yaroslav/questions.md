@@ -1,8 +1,6 @@
-# Q&A Cohort 53
+## Question 1
 
-## Yaroslav
-
-**Question 1**: In the prep exercise, I used ...
+In the prep exercise, I used a callback upon resolving the promise...
 
 **ChatBot**: Claude
 
