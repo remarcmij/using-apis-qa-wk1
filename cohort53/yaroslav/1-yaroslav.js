@@ -1,4 +1,4 @@
-function wait(time) {
+function waitSync(time) {
   const endTime = Date.now() + time;
 
   // Busy-wait loop that blocks the main thread until the specified time has
@@ -14,28 +14,29 @@ function walk() {
   for (let i = 0; i < 10; i++) {
     buffer += '.';
     process.stdout.write('\r' + buffer);
-    wait(100);
+    waitSync(100);
   }
 }
 
-function pause() {
-  buffer += '|';
-  process.stdout.write('\r' + buffer);
-  wait(1000);
+function waggle() {
+  for (const char of String.raw`\|/-`.split('')) {
+    process.stdout.write('\r' + buffer + char);
+    waitSync(500);
+  }
 }
 
-function catWalk() {
+function dotWalk() {
   buffer = '';
 
   walk();
-  pause();
+  waggle();
   walk();
 
   // Clear line in terminal
   process.stdout.write('\r\x1b[K');
 
-  // Recursive call
-  catWalk();
+  // Synchronous recursive call
+  dotWalk();
 }
 
-catWalk();
+dotWalk();
