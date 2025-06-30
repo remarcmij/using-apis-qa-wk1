@@ -7,8 +7,8 @@ let isRunning = false;
 // It blocks the main thread for the specified time before executing the
 // callback function.
 // Note: This is not recommended for real applications as it can freeze the UI.
-function setTimeoutBlocking(callbackFn, time) {
-  const endTime = Date.now() + time;
+function setTimeoutBlocking(functionRef, delay) {
+  const endTime = Date.now() + delay;
 
   // Busy-wait loop that blocks the main thread until the specified time has
   // passed.
@@ -16,7 +16,7 @@ function setTimeoutBlocking(callbackFn, time) {
   while (Date.now() < endTime) {
     // do nothing
   }
-  callbackFn();
+  functionRef();
 }
 
 function timer(count) {
