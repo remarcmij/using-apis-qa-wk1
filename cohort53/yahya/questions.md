@@ -1,8 +1,10 @@
-# Why Did We Use Callbacks Before Promises in JavaScript?
-
 > ChatBot: ChatGPT
 >
 > Prompt: In JavaScript, If Promises make code cleaner, why did we ever use callbacks?
+>
+>Response follows:
+
+# Why Did We Use Callbacks Before Promises in JavaScript?
 
 The reason we used callbacks before Promises became standard is mostly historical and practical:
 
